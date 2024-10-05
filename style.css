@@ -1,21 +1,29 @@
 body{
-    font-family: 'Lucida Sans Unicode';
     background-color: black;
     padding: 20px;
 }
 h1{
     color: blue;
+    font-family: 'Lucida Grande';
+    font-size: large;
 }
 p{
     color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
 }
 li{
     color: white;
     padding: 5px 0;
+    font-family: fantasy;
+    font-size: small;
 }
 button{
+    border-radius: 12px;
     margin-left: 10px;
     color: violet;
+    font-family: sans-serif;
+    font-size: smaller;
 }
 #task-list{
     list-style: none;
