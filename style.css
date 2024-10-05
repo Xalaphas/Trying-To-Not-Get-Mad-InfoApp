@@ -1,0 +1,27 @@
+body{
+    font-family: 'Lucida Sans Unicode';
+    background-color: black;
+    padding: 20px;
+}
+h1{
+    color: blue;
+}
+p{
+    color: red;
+}
+li{
+    color: white;
+    padding: 5px 0;
+}
+button{
+    margin-left: 10px;
+    color: violet;
+}
+#task-list{
+    list-style: none;
+    padding: 0;
+}
+.completed {
+    text-decoration: line-through;
+    color: rgb(3, 216, 20);
+}
