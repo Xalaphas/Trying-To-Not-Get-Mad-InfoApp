@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "electron ."},
+    "dev": "electron ."
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "devDependencies": {
-    "electron": "^32.1.2"
+  "dependencies": {
+    "electron": "^32.1.2",
+    "save-dev": "^0.0.1-security"
   }
 }

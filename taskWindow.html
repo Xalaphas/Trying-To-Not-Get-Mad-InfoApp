@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Tarefas e Notas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="task-window">
+        <h2>Criar uma Nova Lista de Tarefas</h2>
+        <div class="task-inputs">
+            <label for="task-name">Nome da Tarefa:</label>
+            <input type="text" id="task-name">
+
+            <label for="task-note">Bloco de Notas</label>
+            <textarea id="task-note" rows="4" cols="50"></textarea>
+            <button id="add-task">Adicionar Tarefa</button>
+        </div>
+
+        <div class="task-list">
+            <h3>Lista de Tarefas</h3>
+            <ul id="tasks"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('add-task').addEventListener('click', function() {
+            const taskName = document.getElementById('task-name').value;
+            const taskNote = document.getElementById('task-note').value;
+
+            const taskList = document.getElementById('tasks');
+            const newTask = document.createElement('li');
+            newTask.textContent = `${taskName}: ${taskNote}`;
+            taskList.appendChild(newTask);
+        });
+    </script>
+</body>
+</html>

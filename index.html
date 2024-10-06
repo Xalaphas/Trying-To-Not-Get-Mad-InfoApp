@@ -5,17 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trying To Not Get Mad</title>
     <link rel="stylesheet" href="style.css">
-    <script src="renderer.js"></script>
+    <script defer src="renderer.js"></script>
 </head>
 <body>
-    <h1>Lista de afazeres:</h1>
-    <p>KRL MLK FUDIDO VAI DORMIRR</p>
-    
-    <input id="task-input" type="text" placeholder="Nova Tarefa">
-    <button id="add-task">Adicionar mais uma caraia de tarefa</button>
-    
-    <ul id="task-list"></ul> <!-- A única lista para as tarefas -->
-    
-    <button id="go-questions">Responder questionário</button>
+    <h1>Trying To Not Get Mad</h1>
+    <p>Um aplicativo para te ajudar a não enloquecer durante os seus <strong>estudos!</strong></p>
+    <p><em>Principalmente</em> em relação a bosta do <strong>ENEM</strong></p>
+    <p>Seja muito bem-vindo e bons estudos!</p>
+
+    <h1>Formulário de Perguntas Pessoais</h1>
+    <form id="personal-info-form">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="age">Idade:</label>
+        <input type="text" id="age" name="age" required>
+        <label for="profession">Profissão:</label>
+        <input type="text" id="profession" name="profession" required>
+        <label for="hobbie">Hobbie:</label>
+        <input type="text" id="hobbie" name="hobbie" required>
+        <button type="submit">Enviar Informações</button>
+    </form>
+
+    <h1>Lista de Afazeres</h1>
+    <p>Crie sua lista de tarefas para melhor organização de estudos e tarefas cotidianas!</p>
+    <button id="create-task">Criar Nova Lista de Tarefas</button>
 </body>
 </html>

@@ -1,29 +1,31 @@
-const addTaskButton = document.getElementById('add-task');
-const taskInput = document.getElementById('task-input');
-const taskList = document.getElementById('task-list');
-const goQuestion = document.getElementById('go-question');
+const { ipcRenderer } = require("electron");
 
-addTaskButton.addEventListener('click', () => {
-    const taskText = taskInput.value;
-    if (taskText) {
-        const li = document.createElement('li');
-        li.textContent = taskText;
-        li.addEventListener('click', () => {
-            li.classList.toggle('completed');
-        });
-        taskList.appendChild(li);
-        taskInput.value = '';
-    }
+//abrir janela de criação de tarefas
+document.getElementById('create-task').addEventListener('click', () => {
+    ipcRenderer.send('open-task-window');
 });
 
-goQuestion.addEventListener('click', () => {
-    window.location.href = 'question.html';
-});
-
-document.getElementById('personal-question-form').addEventListener('submit', (Event) => {
+//lógica do formulário
+document.getElementById('personal-info-form')?.addEventListener('submit', (Event) => {
     Event.preventDefault();
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').value;
-    const professional = document.getElementById('professional').value;
-    const hobbie = document.getElementById('hobbie');
+    const profession = document.getElementById('profession').value;
+    const hobbie = document.getElementById('hobbie').value;
+
+    // Aqui você pode exibir uma mensagem ou manipular os dados conforme necessário
+    console.log(`Nome: ${name}, Idade: ${age}, Profissão: ${profession}`);
+
+    // Enviar as informações para o back-end se necessário
+});
+
+document.getElementById('create-task-list').addEventListener('click', function() {
+    // Lógica para criar a lista de tarefas
+    const taskList = document.getElementById('task-list');
+    const task = document.createElement('li');
+    task.textContent = 'Nova Tarefa';
+    taskList.appendChild(task);
+    alert('Lista de Tarefas Criada!');
+    // Aqui você pode adicionar a funcionalidade de abrir a janela ou criar a lista
+    createTaskWindow();
 });
