@@ -13,7 +13,9 @@ document.getElementById('personal-info-form')?.addEventListener('submit', (Event
     const profession = document.getElementById('profession').value;
     const hobbie = document.getElementById('hobbie').value;
 
-    // Aqui você pode exibir uma mensagem ou manipular os dados conforme necessário
+    // Enviando informações para o processo principal
+    ipcRenderer.send('save-personal-info', {name, age, hobbie});
+    // Aqui você vai exibir uma mensagem 
     console.log(`Nome: ${name}, Idade: ${age}, Profissão: ${profession}`);
 
     // Enviar as informações para o back-end se necessário

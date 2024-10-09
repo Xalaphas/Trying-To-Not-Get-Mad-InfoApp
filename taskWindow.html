@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="task-window">
+        <h2 id="user-info"></h2>
         <h2>Criar uma Nova Lista de Tarefas</h2>
         <div class="task-inputs">
             <label for="task-name">Nome da Tarefa:</label>
@@ -23,17 +24,25 @@
             <ul id="tasks"></ul>
         </div>
     </div>
-
     <script>
-        document.getElementById('add-task').addEventListener('click', function() {
-            const taskName = document.getElementById('task-name').value;
-            const taskNote = document.getElementById('task-note').value;
-
-            const taskList = document.getElementById('tasks');
-            const newTask = document.createElement('li');
-            newTask.textContent = `${taskName}: ${taskNote}`;
-            taskList.appendChild(newTask);
+        const {ipcRenderer} =  require('electron');
+        ipcRenderer.on('load-user-info', (Event,  userInfo) => {
+            const  userInfoElement = document.getElementById('user-info');
+            userInfoElement.innerHTML =  `Nome: ${userInfo.name}, Idade:  ${userInfo.age}, Profissão: ${userInfo.profession}, Hobbie: ${userInfo.hobbie}`;
         });
+
+        document.getElementById('add-task').addEventListener('click', function() {
+        const taskName = document.getElementById('task-name').value;
+        const taskNote = document.getElementById('task-note').value;
+
+        const taskList = document.getElementById('tasks');
+        const newTask = document.createElement('li');
+        const taskLink = document.createElement('a');
+        taskLink.href = `taskDetail.html?taskName=${encodeURIComponent(taskName)}&taskNote=${encodeURIComponent(taskNote)}`;
+        taskLink.textContent = `${taskName}`;
+        newTask.appendChild(taskLink);
+        taskList.appendChild(newTask);
+    });
     </script>
 </body>
 </html>

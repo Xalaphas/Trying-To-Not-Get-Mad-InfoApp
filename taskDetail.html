@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Tarefa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="task-name"></h1>
+    <p id="task-note"></p>
+
+    <button id="create-mind-map"></button>
+
+    <div id="mind-map-container" style="display: none;">
+        <h2>Mapa Mental</h2>
+        <input type="file" id="upload-image" accept="image/*"></input>
+        <button id="add-image">Adicionar Imagem</button>
+        <button id="add-link">Adicionar Link de Vídeo</button>
+
+        <button id="add-relation"></button>
+        <div id="mind-map"></div>
+    </div>
+    <script>
+         // Função para capturar parâmetros da URL
+ function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        taskName: params.get('taskName'),
+        taskNote: params.get('taskNote')
+    };
+}
+
+// Carregar as informações da tarefa
+const { taskName, taskNote } = getQueryParams();
+document.getElementById('task-name').textContent = taskName;
+document.getElementById('task-note').textContent = taskNote;
+
+// Exibir mapa mental ao clicar no botão
+document.getElementById('create-mind-map').addEventListener('click', function() {
+    document.getElementById('mind-map-container').style.display = 'block';
+});
+
+// Função para adicionar imagens ao mapa mental
+document.getElementById('add-image').addEventListener('click', function() {
+    const fileInput = document.getElementById('upload-image');
+    const file = fileInput.files[0];
+    if (file) {
+        const imgElement = document.createElement('img');
+        imgElement.src = URL.createObjectURL(file);
+        imgElement.style.maxWidth = '200px';
+        document.getElementById('mind-map').appendChild(imgElement);
+    }
+});
+
+// Função para adicionar links de vídeo ao mapa mental
+document.getElementById('add-link').addEventListener('click', function() {
+    const link = prompt("Insira o link do vídeo:");
+    if (link) {
+        const videoLink = document.createElement('a');
+        videoLink.href = link;
+        videoLink.textContent = link;
+        videoLink.target = '_blank';
+        document.getElementById('mind-map').appendChild(videoLink);
+    }
+});
+
+// Função para criar relações entre os elementos no mapa mental
+document.getElementById('add-relation').addEventListener('click', function() {
+    const relation = prompt("Descreva a relação entre os elementos:");
+    if (relation) {
+        const relationText = document.createElement('p');
+        relationText.textContent = relation;
+        document.getElementById('mind-map').appendChild(relationText);
+    }
+});
+    </script>
+</body>
+</html>

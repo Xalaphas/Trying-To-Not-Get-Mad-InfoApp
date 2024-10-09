@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 
 let mainWindow;
 let taskWindow;
+let userInfo = {}; // variavel para armazenar as informações do usuário
 
 // Cria a janela principal
 function createWindow() {
@@ -52,15 +53,27 @@ app.on('window-all-closed', () => {
     }
 });
 
+//criar janela principal
+
 app.on('activate', function () {
     if (mainWindow === null) {
         createWindow();
     }
 });
 
+// Mostrar as informações do usuário salvas 
+ipcMain.on('save-personal-info', (Event, data) =>{
+    userInfo = data;
+    console.log("Informações do usuário salvas: ", userInfo);
+});
+
 // IPC para abrir a janela de tarefas
-ipcMain.on('open-task-window', () => {
+ipcMain.on('open-task-window', (Event) => {
     if (!taskWindow) {
         createTaskWindow();
+        taskWindow.webContents.once('dom-ready', () =>{
+            taskWindow.webContents.send('load-user-info', userInfo);
+
+        });
     }
 });
